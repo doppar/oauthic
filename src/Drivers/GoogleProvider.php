@@ -12,8 +12,8 @@ class GoogleProvider extends AbstractProvider
     public function getAuthUrl(): string
     {
         return 'https://accounts.google.com/o/oauth2/auth?' . http_build_query([
-            'client_id' => "359644194852-qb7udfp7r8u9p76mv13aq1hnue5n0iqe.apps.googleusercontent.com",
-            'redirect_uri' => "http://localhost:8081/callback",
+            'client_id' => $this->config['client_id'],
+            'redirect_uri' => $this->config['redirect'],
             'scope' => $this->getScopes(),
             'response_type' => 'code',
             'access_type' => 'online',
