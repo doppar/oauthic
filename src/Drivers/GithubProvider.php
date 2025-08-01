@@ -57,7 +57,7 @@ class GithubProvider extends AbstractProvider
      * @param string $code The authorization code received from GitHub.
      * @return array
      */
-    protected function getTokenFields(#[\SensitiveParameter] string $code): array 
+    protected function getTokenFields(#[\SensitiveParameter] string $code): array
     {
         return [
             "client_id" => $this->config["client_id"],

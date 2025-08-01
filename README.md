@@ -11,8 +11,17 @@
 <a href="https://github.com/doppar/oauthic/blob/main/LICENSE"><img src="https://img.shields.io/github/license/doppar/oauthic" alt="License"></a>
 </p>
 
-## Doppar OAuthic - Socialite Authentication package for PHP
+## OAuthic
+Doppar `OAuthic` is a lightweight, extensible authentication package that integrates seamlessly with OAuth 2.0 providers. This package provides a unified interface to authenticate users using social platforms.
 
+## Features
+- 🔒 OAuth 2.0 authentication made simple
+- ✅ Official support for:
+  - Google
+  - GitHub
+  - LinkedIn
+- ⚙️ Easily add custom OAuth providers
+- ⚡ Clean and expressive API
 ---
 
 ## Contributing

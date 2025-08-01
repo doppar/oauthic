@@ -13,6 +13,9 @@
             "email": "mahedi@doppar.com"
         }
     ],
+    "require": {
+        "doppar/axios": "^1.5"
+    },
     "require-dev": {
         "mockery/mockery": "^1.6",
         "phpunit/phpunit": "^11.5.3"
@@ -20,6 +23,11 @@
     "autoload": {
         "psr-4": {
             "Doppar\\OAuthic\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Doppar\\OAuthic\\Tests\\": "tests/"
         }
     },
     "extra": {

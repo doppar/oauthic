@@ -130,7 +130,8 @@ abstract class AbstractProvider implements ProviderInterface
      * @return string
      * @throws \Doppar\OAuthic\Exceptions\AuthException
      */
-    protected function getAccessToken(#[\SensitiveParameter] string $code): string {
+    protected function getAccessToken(#[\SensitiveParameter] string $code): string
+    {
         $response = Axios::to($this->getTokenUrl())
             ->withoutHttp2()
             ->withHeaders($this->getTokenHeaders())
@@ -151,7 +152,7 @@ abstract class AbstractProvider implements ProviderInterface
      * @param string $code
      * @return array
      */
-    protected function getTokenFields(#[\SensitiveParameter] string $code): array 
+    protected function getTokenFields(#[\SensitiveParameter] string $code): array
     {
         return [
             "client_id" => $this->config["client_id"],
@@ -182,7 +183,7 @@ abstract class AbstractProvider implements ProviderInterface
     protected function getName(): string
     {
         $providerName = (new \ReflectionClass($this))->getShortName();
-        
+
         return strtolower($providerName);
     }
 }

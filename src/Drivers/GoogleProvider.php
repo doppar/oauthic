@@ -58,7 +58,7 @@ class GoogleProvider extends AbstractProvider
      * @param string $code The authorization code received from Google.
      * @return array
      */
-    protected function getTokenFields(#[\SensitiveParameter] string $code): array 
+    protected function getTokenFields(#[\SensitiveParameter] string $code): array
     {
         return [
             'client_id' => $this->config['client_id'],
@@ -112,9 +112,16 @@ class GoogleProvider extends AbstractProvider
     #[\Override]
     public function mapUserToObject(array $user): User
     {
+        $id = $user['id'] ?? $user['sub'] ?? null;
+
+        $name = $user['name'] ?? null;
+        if (empty($name) && isset($user['given_name'], $user['family_name'])) {
+            $name = trim($user['given_name'] . ' ' . $user['family_name']);
+        }
+
         return new User([
-            'id' => $user['id'],
-            'name' => $user['name'] ?? null,
+            'id' => $id,
+            'name' => $name,
             'email' => $user['email'] ?? null,
             'avatar' => $user['picture'] ?? null,
         ]);

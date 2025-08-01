@@ -58,7 +58,7 @@ class LinkedinProvider extends AbstractProvider
      * @param string $code The authorization code received from Linkedin.
      * @return array
      */
-    protected function getTokenFields(#[\SensitiveParameter] string $code): array 
+    protected function getTokenFields(#[\SensitiveParameter] string $code): array
     {
         return [
             'client_id' => $this->config['client_id'],
