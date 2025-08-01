@@ -6,10 +6,30 @@ use Doppar\OAuthic\User;
 use Doppar\OAuthic\Exceptions\AuthException;
 use Doppar\Axios\Http\Axios;
 
+/**
+ * Class LinkedinProvider
+ *
+ * OAuth provider implementation for Linkedin.
+ * Handles the OAuth 2.0 authentication flow: building authorization URL,
+ * exchanging code for token, retrieving user info, and mapping it to a User object.
+ *
+ * @package Doppar\OAuthic\Drivers
+ */
 class LinkedinProvider extends AbstractProvider
 {
+    /**
+     * Separator used when joining multiple scopes.
+     *
+     * @var string
+     */
     protected string $scopeSeparator = ' ';
 
+    /**
+     * Get the Linkedin authorization URL to redirect the user to.
+     *
+     * @return string
+     */
+    #[\Override]
     public function getAuthUrl(): string
     {
         return 'https://www.linkedin.com/oauth/v2/authorization?' . http_build_query([
@@ -21,12 +41,24 @@ class LinkedinProvider extends AbstractProvider
         ]);
     }
 
+    /**
+     * Get the Linkedin token endpoint URL.
+     *
+     * @return string
+     */
+    #[\Override]
     public function getTokenUrl(): string
     {
         return 'https://www.linkedin.com/oauth/v2/accessToken';
     }
 
-    protected function getTokenFields(string $code): array
+    /**
+     * Get the fields required to request an access token from Linkedin.
+     *
+     * @param string $code The authorization code received from Linkedin.
+     * @return array
+     */
+    protected function getTokenFields(#[\SensitiveParameter] string $code): array 
     {
         return [
             'client_id' => $this->config['client_id'],
@@ -37,7 +69,15 @@ class LinkedinProvider extends AbstractProvider
         ];
     }
 
-    protected function getAccessToken(string $code): string
+    /**
+     * Exchange the authorization code for an access token.
+     *
+     * @param string $code
+     * @return string
+     * @throws \Doppar\OAuthic\Exceptions\AuthException
+     */
+    #[\Override]
+    protected function getAccessToken(#[\SensitiveParameter] string $code): string
     {
         $response = Axios::to($this->getTokenUrl())
             ->asForm()
@@ -69,6 +109,12 @@ class LinkedinProvider extends AbstractProvider
         return $data['access_token'];
     }
 
+    /**
+     * Get the headers required for the token request.
+     *
+     * @return array
+     */
+    #[\Override]
     protected function getTokenHeaders(): array
     {
         return [
@@ -86,11 +132,18 @@ class LinkedinProvider extends AbstractProvider
         ]);
     }
 
-    public function getUserByToken(string $token): array
+    /**
+     * Fetch the authenticated user's data from Linkedin using the access token.
+     *
+     * @param string $token
+     * @return array
+     */
+    #[\Override]
+    public function getUserByToken(#[\SensitiveParameter] string $token): array
     {
         $curl = curl_init();
 
-        curl_setopt_array($curl, array(
+        curl_setopt_array($curl, [
             CURLOPT_URL => 'https://api.linkedin.com/v2/userinfo',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
@@ -99,16 +152,13 @@ class LinkedinProvider extends AbstractProvider
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => array(
+            CURLOPT_HTTPHEADER => [
                 'Authorization: Bearer ' . $token . ''
-            ),
-        ));
+            ]
+        ]);
 
         $response = curl_exec($curl);
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        curl_close($curl);
-
-
         curl_close($curl);
 
         // Handle potential errors
@@ -132,15 +182,22 @@ class LinkedinProvider extends AbstractProvider
         ];
     }
 
+    /**
+     * Map the raw Linkedin user array to a standardized User object.
+     *
+     * @param array $user
+     * @return \Doppar\OAuthic\User
+     */
+    #[\Override]
     public function mapUserToObject(array $user): User
     {
-        return (new User([
+        return new User([
             'id' => $user['id'],
             'name' => $user['name'] ?? null,
             'email' => $user['email'] ?? null,
             'avatar' => $user['avatar'] ?? null,
             'first_name' => $user['first_name'] ?? null,
             'last_name' => $user['last_name'] ?? null,
-        ]));
+        ]);
     }
 }
