@@ -1,5 +1,13 @@
 # Release Notes
 
+## v1.0.2 - 2026-05-13
+
+### What's Changed
+
+* removed branch alias from composer.json by [@techmahedy](https://github.com/techmahedy) in https://github.com/doppar/oauthic/pull/2
+
+**Full Changelog**: https://github.com/doppar/oauthic/compare/v1.0.1...v1.0.2
+
 ## v1.0.1 - 2025-11-23
 
 ### What's Changed
