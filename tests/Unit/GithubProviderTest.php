@@ -42,7 +42,6 @@ class GithubProviderTest extends TestCase
         // Use reflection to test protected method
         $method = (new ReflectionClass(GithubProvider::class))
             ->getMethod('getTokenFields');
-        $method->setAccessible(true);
 
         $fields = $method->invokeArgs($this->provider, ['test_code']);
         $this->assertEquals([
@@ -58,7 +57,6 @@ class GithubProviderTest extends TestCase
         // Use reflection to test protected method
         $method = (new ReflectionClass(GithubProvider::class))
             ->getMethod('getScopes');
-        $method->setAccessible(true);
 
         // Test default scopes
         $this->assertEquals('user:email', $method->invoke($this->provider));

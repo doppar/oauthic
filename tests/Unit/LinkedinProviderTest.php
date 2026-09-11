@@ -42,7 +42,6 @@ class LinkedinProviderTest extends TestCase
     {
         $method = (new ReflectionClass(LinkedinProvider::class))
             ->getMethod('getTokenFields');
-        $method->setAccessible(true);
 
         $fields = $method->invokeArgs($this->provider, ['test_code']);
         $this->assertEquals([
@@ -58,7 +57,6 @@ class LinkedinProviderTest extends TestCase
     {
         $method = (new ReflectionClass(LinkedinProvider::class))
             ->getMethod('getTokenHeaders');
-        $method->setAccessible(true);
 
         $headers = $method->invoke($this->provider);
         $this->assertEquals([
@@ -71,7 +69,6 @@ class LinkedinProviderTest extends TestCase
     {
         $method = (new ReflectionClass(LinkedinProvider::class))
             ->getMethod('getScopes');
-        $method->setAccessible(true);
 
         $this->assertEquals('openid profile email', $method->invoke($this->provider));
 
