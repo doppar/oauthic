@@ -43,7 +43,6 @@ class GoogleProviderTest extends TestCase
         // Use reflection to test protected method
         $method = (new ReflectionClass(GoogleProvider::class))
             ->getMethod('getTokenFields');
-        $method->setAccessible(true);
 
         $fields = $method->invokeArgs($this->provider, ['test_code']);
         $this->assertEquals([
@@ -60,7 +59,6 @@ class GoogleProviderTest extends TestCase
         // Use reflection to test protected method
         $method = (new ReflectionClass(GoogleProvider::class))
             ->getMethod('getScopes');
-        $method->setAccessible(true);
 
         // Test default scopes
         $defaultScopes = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
