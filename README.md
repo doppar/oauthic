@@ -12,25 +12,17 @@
 </p>
 
 ## OAuthic
-Doppar `OAuthic` is a lightweight, extensible authentication package that integrates seamlessly with OAuth 2.0 providers. This package provides a unified interface to authenticate users using social platforms.
+Doppar OAuthic is a modern, extensible authentication package that simplifies OAuth 2.0 integration in Doppar Framework. In addition to traditional, form-based authentication, Doppar OAuthic offers a clean, convenient interface for authenticating users via popular OAuth providers such as `Google`, `GitHub`, and `LinkedIn`. It also supports custom drivers, giving you full control over provider integrations.
 
-## Features
-- 🔒 OAuth 2.0 authentication made simple
-- ✅ Official support for:
-  - Google
-  - GitHub
-  - LinkedIn
-- ⚙️ Easily add custom OAuth providers
-- ⚡ Clean and expressive API
----
+Whether you're building a microservice, a SaaS product, or integrating with social platforms, Doppar OAuthic makes OAuth 2.0 secure, consistent, and easy to implement.
 
 ## Contributing
 
-Thank you for considering contributing to the Doppar framework! The contribution guide can be found in the [Doppar documentation](https://doppar.com/versions/3.x/contributions.html).
+Thank you for considering contributing to the Doppar framework! The contribution guide can be found in the [Doppar documentation](https://doppar.com/versions/4.x/contributions).
 
 ## Code of Conduct
 
-In order to ensure that the Doppar community is welcoming to all, please review and abide by the [Code of Conduct](https://doppar.com/versions/3.x/contributions.html#code-of-conduct).
+In order to ensure that the Doppar community is welcoming to all, please review and abide by the [Code of Conduct](https://doppar.com/versions/4.x/contributions#code-of-conduct).
 
 ## Security Vulnerabilities
 
