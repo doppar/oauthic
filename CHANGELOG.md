@@ -1,5 +1,16 @@
 # Release Notes
 
+## 4.0.0 - 2026-09-16
+
+### What's Changed
+
+* bump to php8.5 by [@techmahedy](https://github.com/techmahedy) in https://github.com/doppar/oauthic/pull/3
+* tests.yml for php8.5 by [@techmahedy](https://github.com/techmahedy) in https://github.com/doppar/oauthic/pull/4
+* fix phpstan error by [@techmahedy](https://github.com/techmahedy) in https://github.com/doppar/oauthic/pull/5
+* readme.md updated for 4.x version: by [@techmahedy](https://github.com/techmahedy) in https://github.com/doppar/oauthic/pull/6
+
+**Full Changelog**: https://github.com/doppar/oauthic/compare/v1.0.2...4.0.0
+
 ## v1.0.2 - 2026-05-13
 
 ### What's Changed
